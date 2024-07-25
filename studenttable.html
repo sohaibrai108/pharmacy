@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        table, tr, td, th{
+            border: 2px solid black;
+            border-collapse: collapse;
+            /* text- */
+        }
+        table{
+            margin-top: 100px;
+            height: 300px;
+            width: 700px;
+            text-align: center;
+            font-size: 20px;
+        }
+
+    </style>
+
+    <label for="mathSubject">Math
+        <input type="text" name="mathSubject" id="mf">
+    </label><br>
+    <label for="engSubject">English
+        <input type="text" name="engSubject" id="ef">
+    </label><br>
+    <button onClick="showContent()">Submit</button>
+
+    <table>
+        <tr>
+            <th>Subject</th>
+            <th>Total Marks</th>
+            <th>Obtained Marks</th>
+            <th>Status</th>
+            <th>Grade</th>
+            
+        </tr>
+        <tr>
+            <td>Math</td>
+            <td>100</td>
+            <td id="mthoM"></td>
+            <td id="pstatus"></td>
+            <td id="mgrade"></td>
+            
+            
+        </tr>
+        <tr>
+            <td>English</td>
+            <td>100</td>
+            <td id="engoM"></td>
+            <td id="engstatus"></td>
+            <td id="egrade"></td>
+        </tr>
+
+    </table>
+
+    <script>
+        function showStatus(totalMarks, obtainedMarks, show, field){
+            field.innerHTML= obtainedMarks;
+            if(obtainedMarks >= totalMarks* 0.33){
+                show.innerHTML= "Pass";
+            }
+            else{
+                show.innerHTML = "Fail";
+            }
+        }
+
+        function showgrade(totalMarks, obtainedMarks, gradeShow){
+            if(obtainedMarks >= totalMarks * 0.9){
+                gradeShow.innerHTML="A+";
+            }
+            else if( obtainedMarks >= totalMarks * 0.8 && obtainedMarks < totalMarks * 0.9){
+                gradeShow.innerHTML ="A";
+            }
+            else if( obtainedMarks >= totalMarks * 0.6 && obtainedMarks < totalMarks * 0.8){
+                gradeShow.innerHTML ="B";
+            }
+            else if(obtainedMarks >= totalMarks * 0.5 && obtainedMarks < totalMarks * 0.6){
+                gradeShow.innerHTML = "C";
+            }
+            else if(obtainedMarks >= totalMarks * 0.33 && obtainedMarks < totalMarks * 0.5){
+                gradeShow.innerHTML ="D"
+            }
+            else{
+                gradeShow.innerHTML = "F"
+            }
+        }
+
+        function showContent(){
+            let mathMarks = document.getElementById("mf").value;
+            let engMarks = document.getElementById("ef").value;
+            let mmf = document.getElementById("mthoM");
+            let msf = document.getElementById("pstatus");
+            let emf = document.getElementById("engoM");
+            let esf = document.getElementById("engstatus");
+            let mgrade = document.getElementById("mgrade");
+            let egrade = document.getElementById("egrade");
+            showStatus(100, mathMarks, msf, mmf);
+            showStatus(100, engMarks, esf, emf);
+            showgrade(100, mathMarks, mgrade);
+            showgrade(100, engMarks, egrade);
+        }
+    </script>
+</body>
+</html>
